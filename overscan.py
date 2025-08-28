@@ -7,6 +7,18 @@ from math import sqrt,atan,pi
 
 '''
 Example use:
+
+import sys
+scriptPath = 'C:/Users/laure/OneDrive/Bureau/camTool/overscan.py'
+
+if not scriptPath in sys.path:
+    sys.path.append(scriptPath)
+   
+from overscan import OverscanCamera
+OverscanCamera(newCamName = 'SQ0010_SH0010_renderCam',
+                firstFrame = 1000, lastFrame = 1130,
+                horizontalResolution = 1920,verticalResolution = 1024,
+                inputCam = 'SQ0010_SH0010_layoutCam')
 '''
 
 
@@ -108,7 +120,7 @@ class OverscanCamera():
         def buildCamPosDict(cam:str,frameRange:list[int]) -> dict:
             'build a dict with the translation/rotation (worldSpace) in a framerange'
 
-            furthestCam = 0 #check that
+            furthestCam = 0 
             camPosition = {}
 
             for frame in range(frameRange[0],frameRange[1]+1):
@@ -461,6 +473,7 @@ class OverscanCamera():
 
         for cornerLoc in TL,TR,BL,BR:
             cmds.delete(cornerLoc)
+
 
 
 
